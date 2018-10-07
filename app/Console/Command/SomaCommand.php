@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Command;
 
 use Illuminate\Console\Command;
 
@@ -40,8 +40,9 @@ class SomaCommand extends Command
     public function handle()
     {
         $numeros = $this->argument('numeros');
+        $numeros = preg_replace("/[^0-9]/", "+", $numeros);
         if(empty($numeros)){
-            $numeros = rand(0,100) .' + '. rand(0,100). ' + ' . rand(0,100);
+            $numeros = rand(0,100) .'+'. rand(0,100). '+' . rand(0,100);
         }
         $numeros_separados = explode('+', $numeros);
         $soma = 0;
@@ -49,6 +50,5 @@ class SomaCommand extends Command
             $soma += $number;
         }
         dd($soma);
-
     }
 }

@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/numeros/{numeros}','ArrayController@postSoma');
 
 Route::get('/array','ArrayController@returnArray');
+
+Route::get('/replace','ArrayController@postReplace');

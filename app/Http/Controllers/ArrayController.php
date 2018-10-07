@@ -37,13 +37,18 @@ class ArrayController extends Controller
 
     public function postSoma(Request $request){
 
-        $numeros = $request->numeros;
-        $numeros_separados = explode(',', $numeros);
-        //dd($numeros_separados);
-        $soma = 0;
-        foreach($numeros_separados as $number){
-            $soma += $number;
+        if(!empty($request->numeros)){
+            $numeros = $request->numeros;
+            $numeros =  preg_replace("/[^0-9]/", ",", $numeros);
+            $numeros_separados = explode(',', $numeros);
+            //dd($numeros_separados);
+            $soma = 0;
+            foreach($numeros_separados as $number){
+                $soma += $number;
+            }
+            return $soma;
         }
-        return $soma;
+
     }
+
 }
